@@ -18,9 +18,6 @@ colors = [RED, GREEN, BLUE, YELLOW, ORANGE, BLACK, WHITE]
 
 def player(guess_hist, res_hist):
     """
-    Função principal do jogador.
-
-    Esta função deve retornar o seu palpite, que deve ser uma lista de 4 cores.
     As cores disponíveis são: RED, GREEN, BLUE, YELLOW, ORANGE, BLACK, WHITE.
 
     Parâmetros:
@@ -29,9 +26,15 @@ def player(guess_hist, res_hist):
 
     Retorna:
     - lista de 4 cores
-
-    Exemplo:
-    return [RED, GREEN, BLUE, YELLOW]
     """
-
-    return sample(colors, 4)  # Exemplo: retorna um palpite aleatório
+    
+    chute = []
+    
+    if len (guess_hist) < 4:
+        chute = colors [len(guess_hist) : len(guess_hist) + 3]
+    elif len (guess_hist) == 4:
+        chute = colors [ORANGE, BLACK, WHITE, RED]
+    else: 
+    	
+    return chute
+    # return sample(colors, 4)  Exemplo: retorna um palpite aleatório
