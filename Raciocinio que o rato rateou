@@ -1,0 +1,30 @@
+Se só tiver  1  correto, fazemos em 3 tentativas:
+1.    4 cores - uma correta (as 3 de fora estão certas)
+2.   2 cores de fora(corretas) e mais duas aleatorias do primeiro chute
+3.1  Se a quantidade de corretas for 3:    
+            Uma  das duas que você colocou do primeiro caso está correta.
+             Basta pegar uma delas e colocar junto com as 3 que ficaram fora do primeiro caso.
+             Aí você já tem as corretas, caso seja 4 corretas(obvio), caso sejam apenas 3 corretas, significa que é a que você usou no segundo caso e retirou no terceiro caso.
+
+3.2  Se a quantisdade de corretas for 2:
+         A dupla que n foi usada no caso 2 do quarteto do caso 1 possui a outra CORRETA 
+        Repetir o caso 3.1 com essas outras duas 
+
+  
+       
+
+Se tiver 3 corretos:
+1. 4 aleatorias fodasse 
+2.   Se receber 3, 2, 1:
+       Troque o lugar de duas cores(se o segundo numero for 0) e coloque outras duas novas.
+3. Se receber 3:
+      
+
+vermelho verde azul amarelo
+verde azul amarelo laranja
+azul amarelo laranja preto
+amarelo laranja preto branco
+laranja preto branco vermelho
+com isso voce descobre as 4 cores corretas!
+
+
