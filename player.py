@@ -15,13 +15,38 @@ from random import sample
 # Cores disponíveis para o palpite
 colors = [RED, GREEN, BLUE, YELLOW, ORANGE, BLACK, WHITE]
 
-cores_certas = [False, False, False, False, False, False, False]
+'''
+Lista com as cores da lista acima (as posições nessa lista refletem as posições das cores na lista "colors
+True significa que a cor está na senha, False indica que a cor não está na senha
+Por padrão, todas as cores estão definidas como False para análise posterior
+'''
 
+cores_certas = [0, 1, 2, 3, 4, 5, 6] # Valores iniciais que serão modificados ao longo das tentativas. Eles representam meramente a posição, na lista "colors", das cores representadas.
+
+def analise (hist_chutes, hist_result):
+    cores_codigo = []
+    for i in range(len(hist_result) - 1):
+            if hist_result[i + 1][0] > hist_result[i][0]:
+                cores_certas[colors.index(hist_chutes[i + 1][3])] == True
+                cores_certas[colors.index(hist_chutes[i][0])] == False
+            elif hist_result[i + 1][0] < hist_result[i][0]:
+                cores_certas[colors.index(hist_chutes[i][0])] == True
+                cores_certas[colors.index(hist_chutes[i+1][3])] == False
+            else: 
+                cores_certas[colors.index(hist_chutes[i + 1][3])] == colors.index(hist_chutes[i][0])
+    if cores_certas.count(True) == 1:
+        cores_certas[cores_certas[0]] = True
+        cores_certas[0] = True
+        for i in range(len(cores_certas)):
+            if cores_certas[i] == 0:
+                cores_certas[i] = True
+    elif cores_certas.count(True) == 2:
+        cores_dependentes = 0
+        for i in range(len(cores_certas)):
+            if type(cores_certas[i]) == int and cores_certas[i] != i:
+                cores_dependentes += 1
 
 def player(guess_hist, res_hist):
-    global colors
-    global cores_certas
-
     """
     As cores disponíveis são: RED, GREEN, BLUE, YELLOW, ORANGE, BLACK, WHITE.
 
@@ -32,21 +57,16 @@ def player(guess_hist, res_hist):
     Retorna:
     - lista de 4 cores
     """
-    
+
+    global cores_certas
+
     chute = []
-    
+
     if len (guess_hist) < 4:
-        chute = colors [len(guess_hist) : len(guess_hist) + 3]
+        chute = colors[len(guess_hist) : len(guess_hist) + 4]
     elif len (guess_hist) == 4:
-        chute = colors [ORANGE, BLACK, WHITE, RED]
+        chute = [ORANGE, BLACK, WHITE, RED]
     else:
-        for i in range(len(res_hist) - 1):
-            if res_hist[i + 1] > res_hist[i]:
-                cores_certas[colors.index(guess_hist[i + 1][3])] == True
-            elif res_hist[i + 1] < res_hist[i]:
-                cores_certas[colors.index(guess_hist[i][0])] == True
-            else: 
-                cores_certas[colors.index(guess_hist[i + 1][3])] == colors.index(guess_hist[i][0])
+        chute = sample(analise(guess_hist, res_hist))
 
     return chute
-    # return sample(colors, 4)  Exemplo: retorna um palpite aleatório
