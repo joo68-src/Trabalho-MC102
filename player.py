@@ -98,30 +98,16 @@ def analise (hist_chutes, hist_result):
         
         cores_codigo = cores_na_senha(cores_certas)
         return cores_codigo
-
-    elif cores_certas.count(True) == 2:
-        if cores_certas[0] == True:
-            for i in range(len(cores_certas)):
-                if type(cores_certas[i]) == int and cores_certas[i] != i:
-                    opcoes_pares.append(colors[i])
-                    opcoes_pares.append(colors[cores_certas[i]])
-
-            if len(hist_chutes) == 5:
-                cores_codigo[2] = opcoes_pares[2]
-                cores_codigo[3] = opcoes_pares[3]
-                return cores_codigo
-            
-            cores_codigo.append(opcoes_pares[0])
-            cores_codigo.append(opcoes_pares[1])
-            return cores_codigo
-            
-        else:
-            for i in range(len(cores_certas)):
-                if type(cores_certas[i]) == int and cores_certas[i] != i:
-                    cores_certas[cores_certas[i]] = True
-                    cores_certas[i] = True
-                    cores_codigo = cores_na_senha(cores_certas)
-                    return cores_codigo
+    elif cores_certas.count(True) == 3:
+        for i in range(len(cores_certas)):
+            if type(cores_certas[i]) == int and cores_certas[cores_certas[i]] == True:
+                cores_certas[i] = True
+        
+        cores_codigo = cores_na_senha(cores_certas)
+        return cores_codigo
+    else:
+        return sample(colors, 4)
+                
                     
         
 
