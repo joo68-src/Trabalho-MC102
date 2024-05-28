@@ -67,6 +67,9 @@ def analise (hist_chutes, hist_result):
         if len(relacoes["verdadeiro"]) + len(relacoes["dependencias"][i]) == 4:
             respostas_possiveis.append(relacoes["verdadeiro"] + relacoes["dependencias"][i])
 
-    resposta = respostas_possiveis[0]
-    respostas_possiveis.remove(respostas_possiveis[0])
+    try:
+        resposta = respostas_possiveis[0]
+        respostas_possiveis.remove(respostas_possiveis[0])
+    except IndexError:
+        resposta = sample(colors, 4)
     return resposta
